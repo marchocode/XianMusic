@@ -1,0 +1,22 @@
+/*
+* @Author: Marte
+* @Date:   2018-06-27 15:16:39
+* @Last Modified by:   Marte
+* @Last Modified time: 2018-06-28 09:42:31
+*/
+.img_padd {
+    padding-top: 20px;
+}
+.bottom_nvp {
+    padding-top:40px;
+    padding-bottom: 40px
+}
+.center_bk {
+    text-align: center;
+}
+.center_bk p {
+    margin-bottom: 0;
+}
+.center_bk ul {
+    margin-top: 20px;
+}

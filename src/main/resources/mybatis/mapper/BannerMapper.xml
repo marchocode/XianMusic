@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.xianmusic.music.mapper.BannerMapper">
+	
+	<select id="findBanner" resultType="club.xianmusic.music.domain.Banner">select * from banner</select>
+	
+	<select id="findCommodity" resultType="club.xianmusic.music.domain.Commodity">select * from commodity</select>
+	
+	
+	<delete id="deleteBannerById">
+		delete from banner where b_id = #{id}
+	</delete>
+	
+	<select id="findBannerById" resultType="club.xianmusic.music.domain.Banner">
+		select * from banner where b_id = #{id}
+	</select>
+	
+	<update id="updateBanner">
+		UPDATE `banner` SET `b_title` = #{b_title} WHERE `b_id` = #{b_id}
+	</update>
+	
+	<insert id="saveBanner">
+		insert into banner(b_title,b_imgaddress) values(#{b_title},#{b_imgaddress})
+	</insert>
+	
+</mapper>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.xianmusic.music.mapper.PuMapper">
+
+	<resultMap type="club.xianmusic.music.domain.Pu"
+		id="findPuOrderBy1">
+		<id column="pu_id" property="pu_id" />
+		<result column="pu_name" property="pu_name" />
+		<result column="pu_drop" property="pu_drop" />
+
+		<association property="singer"
+			javaType="club.xianmusic.music.domain.Singer">
+			<id column="s_id" property="s_id" />
+			<result column="s_name" property="s_name" />
+		</association>
+	</resultMap>
+
+	<select id="findPuOrderBy" resultMap="findPuOrderBy1">SELECT
+		pu_id,pu_name,pu_drop,s_name,s_id from singer , pu WHERE s_id =
+		pu_sing_id ORDER BY #{type} DESC LIMIT 0, 10
+	</select>
+
+	<resultMap type="club.xianmusic.music.domain.Pu"
+		id="findPuById">
+
+		<result column="pu_author" property="pu_author" />
+		<result column="pu_video" property="pu_video" />
+		<result column="pu_drop" property="pu_drop" />
+
+		<association property="singer"
+			javaType="club.xianmusic.music.domain.Singer">
+			<id column="s_id" property="s_id" />
+			<result column="s_name" property="s_name" />
+			<result column="s_title" property="s_title" />
+			<result column="s_img" property="s_img" />
+		</association>
+		<collection property="pictures"
+			ofType="club.xianmusic.music.domain.Picture">
+			<id column="i_id" property="i_id" />
+			<result column="i_imgaddress" property="i_imgaddress" />
+		</collection>
+
+
+	</resultMap>
+
+
+	<select id="findPuById" resultMap="findPuById">
+		SELECT
+		s_id,s_name,s_title,s_img,pu_author,pu_video,pu_drop,i_id,i_imgaddress
+		from singer , pu ,img
+		WHERE s_id = pu_sing_id and pu_id = i_puid and
+		pu_id = #{id}
+	</select>
+
+
+	<resultMap type="club.xianmusic.music.domain.Pu"
+		id="findAllPu">
+		<id column="pu_id" property="pu_id" />
+		<result column="pu_name" property="pu_name" />
+		<result column="pu_drop" property="pu_drop" />
+
+		<association property="singer"
+			javaType="club.xianmusic.music.domain.Singer">
+			<result column="s_name" property="s_name" />
+		</association>
+
+	</resultMap>
+
+	<select id="findAllPu" resultMap="findAllPu">SELECT
+		pu_id,pu_name,pu_drop,s_name from pu , singer WHERE pu_sing_id = s_id
+	</select>
+
+
+	<insert id="saveDrop">INSERT INTO `xianmusic`.`droppu`(`dp_puid`, `dp_uid`)
+		VALUES (#{dp_puid},#{dp_uid})</insert>
+
+	<select id="findDropBy"
+		resultType="club.xianmusic.music.domain.DropPu">select * from droppu where dp_puid = #{dp_puid} and dp_uid
+		=#{dp_uid}</select>
+
+	<delete id="deleteDropById">DELETE FROM `xianmusic`.`droppu` WHERE `dp_id` =
+		#{id}</delete>
+
+	<select id="findAllDropByPuId" resultType="java.lang.Integer">SELECT pu_drop FROM pu
+		WHERE pu_id = #{puId}</select>
+
+	<update id="updateDropNum">
+		UPDATE pu SET pu_drop = pu_drop
+		<if test="num == 1">+1</if>
+		<if test="num == 0">-1</if>
+		WHERE pu_id = #{puId};
+	</update>
+
+	<insert id="saveCollectionPu">INSERT INTO `xianmusic`.`collectionpu`(`cp_userid`,
+		`cp_puid`) VALUES (#{cp_userid},#{cp_puid})</insert>
+
+	<select id="findCollectionPuBy"
+		resultType="club.xianmusic.music.domain.CollectionPu">
+		select * from collectionpu where cp_userid = #{cp_userid} and cp_puid =
+		#{cp_puid}
+	</select>
+
+
+	<delete id="deleteCollectionPuById">delete from collectionpu where cp_id = #{id}</delete>
+
+	<resultMap type="club.xianmusic.music.domain.Pu"
+		id="findPuByLikeName">
+
+		<id column="pu_id" property="pu_id" />
+		<result column="pu_name" property="pu_name" />
+		<result column="pu_drop" property="pu_drop" />
+		<association property="singer"
+			javaType="club.xianmusic.music.domain.Singer">
+			<result column="s_name" property="s_name" />
+		</association>
+	</resultMap>
+
+	<select id="findPuByLikeName" resultMap="findPuByLikeName">
+		SELECT pu_id,pu_name,pu_drop,s_name from pu ,singer WHERE pu_sing_id =
+		singer.s_id AND pu_name LIKE #{name}
+	</select>
+
+	<select id="findPuByCollectionUserId"
+		resultMap="findPuByLikeName">
+		SELECT pu_id,pu_name,pu_drop,s_name FROM collectionpu , pu,singer WHERE cp_puid =
+		pu_id and pu_sing_id = s_id and cp_userid = #{userId}
+	</select>
+	
+	
+	<resultMap type="club.xianmusic.music.domain.Pu" id="findAllPuByIndex">
+	
+		<id column="pu_id" property="pu_id" />
+		<result column="pu_name" property="pu_name" />
+		<result column="pu_author" property="pu_author" />
+		<result column="pu_video" property="pu_video" />
+		<result column="pu_num" property="pu_num" />
+		<result column="pu_drop" property="pu_drop" />
+		<result column="pu_date" property="pu_date" />
+		
+		<association property="singer"
+			javaType="club.xianmusic.music.domain.Singer">
+			<result column="s_name" property="s_name" />
+		</association>
+		
+		<association property="user"
+			javaType="club.xianmusic.music.domain.User">
+			<result column="u_name" property="u_name" />
+		</association>
+		
+	
+	</resultMap>
+	
+	<select id="findAllPuByIndex" resultMap="findAllPuByIndex">
+		SELECT pu.*,s_name,u_name FROM pu , singer , `user` WHERE pu_sing_id = s_id and pu_user = u_id
+	</select>
+	
+	
+	<select id="findBackPuById" resultMap="findAllPuByIndex">
+		SELECT pu.*,s_name,u_name FROM pu , singer , `user` WHERE pu_sing_id = s_id and pu_user = u_id and pu_id = #{id}
+	</select>
+
+</mapper>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.xianmusic.music.mapper.TextMapper">
+	
+	<select id="findTextOrderByDrop" resultType="club.xianmusic.music.domain.Text">SELECT t_id,t_bref,t_title,t_img FROM text ORDER BY t_drop DESC LIMIT 0 , 8</select>
+	
+	<resultMap type="club.xianmusic.music.domain.Text" id="findTextById">
+		<id column="t_id" property="t_id"/>
+		<result column="t_title" property="t_title"/>
+		<result column="t_content" property="t_content"/>
+		<result column="t_drop" property="t_drop"/>
+		<result column="t_img" property="t_img"/>
+		<result column="t_time" property="t_time"/>
+		<association property="user" javaType="club.xianmusic.music.domain.User">
+			
+			<result column="u_nick" property="u_nick"/>
+			<result column="u_img" property="u_img"/>
+			<result column="u_autograph" property="u_autograph"/>
+		
+		</association>		
+	
+	</resultMap>
+	
+	<select id="findTextById" resultMap="findTextById">SELECT t_id,t_title,t_content,t_drop,t_img,t_time,u_nick,u_img,u_autograph from text ,`user` WHERE u_id = t_author_id and t_id = #{textId}</select>
+	
+	
+	
+	<select id="findAllText" resultType="club.xianmusic.music.domain.Text">SELECT * FROM text</select>
+	
+	
+	<insert id="saveComment">
+		INSERT INTO textcomment(`tc_userid`, `tc_textid`, `tc_content`) VALUES (#{tc_userid},#{tc_textid},#{tc_content})
+	</insert>
+	
+	
+	<resultMap type="club.xianmusic.music.domain.TextComment" id="findAllComment">
+		
+		<id column="tc_id" property="tc_id"/>
+		<result column="tc_content" property="tc_content"/>
+		<result column="tc_drop" property="tc_drop"/>
+	
+		<association property="user" javaType="club.xianmusic.music.domain.User">
+			<result column="u_nick" property="u_nick"/>
+			<result column="u_img" property="u_img"/>
+		</association>
+	</resultMap>
+	
+	
+	<select id="findAllCommentByTextId" resultMap="findAllComment">
+	
+	SELECT tc_id,tc_content,tc_drop,u_nick,u_img from textcomment , `user`
+	WHERE tc_userid = u_id and tc_textid = #{id}
+	</select>
+	
+	<insert id="saveTextDrop">INSERT INTO `xianmusic`.`textdrop`(`td_userid`, `td_textid`) VALUES (#{td_userid},#{td_textid})</insert>
+	
+	<select id="findTextDropByObj" resultType="club.xianmusic.music.domain.TextDrop">
+		select * from textdrop where td_userid = #{td_userid} and td_textid= #{td_textid}
+	</select>
+	
+	<update id="updateTextDropNum">
+		UPDATE text SET t_drop = 
+		<if test="num == 1">t_drop + 1</if> 
+		<if test="num == 0">t_drop - 1</if> 
+		where t_id = #{textId}
+	</update>
+	
+	<delete id="deleteTextDropById">DELETE FROM textdrop WHERE td_id = #{id}</delete>
+	
+	
+	<select id="findTextDropNum" resultType="java.lang.Integer">select t_drop from text where t_id = #{textId}</select>
+	
+	
+	<insert id="saveCollectionText">INSERT INTO `xianmusic`.`collectiontext`(`ct_userid`, `ct_textid`) VALUES (#{ct_userid}, #{ct_textid})</insert>
+	
+	<select id="findCollectionText" resultType="club.xianmusic.music.domain.CollectionText">
+		select * from collectiontext where ct_userid = #{ct_userid} and ct_textid = #{ct_textid}
+	</select>
+	
+	<delete id="deleteCollectionTextById">delete from collectiontext where ct_id = #{id}</delete>
+	
+	
+	<select id="findTextByCollectionUserId" resultType="club.xianmusic.music.domain.Text">
+		SELECT text.* FROM collectiontext , text WHERE ct_textid = t_id and ct_userid = #{userId}
+	</select>
+	
+	<resultMap type="club.xianmusic.music.domain.Text" id="findBackAllText">
+	
+		<id column="t_id" property="t_id"/>
+		<result column="t_title" property="t_title"/>
+		<result column="t_bref" property="t_bref"/>
+		<result column="t_drop" property="t_drop"/>
+		<result column="t_time" property="t_time"/>
+		<association property="user" javaType="club.xianmusic.music.domain.User">
+			<result column="u_name" property="u_name"/>
+		</association>
+	
+	</resultMap>
+	
+	<select id="findBackAllText" resultMap="findBackAllText">
+		SELECT t_id,t_bref,t_title,t_drop,t_time,u_name FROM text , `user` WHERE t_author_id = u_id
+	</select>
+	
+	<select id="findAllExamine" resultMap="findBackAllText">
+		SELECT t_id,t_bref,t_title,t_drop,t_time,u_name FROM usertext , `user` WHERE t_author_id = u_id
+	</select>
+	
+	<resultMap type="club.xianmusic.music.domain.Text" id="findBackTextById">
+	
+		<id column="t_id" property="t_id"/>
+		<result column="t_title" property="t_title"/>
+		<result column="t_bref" property="t_bref"/>
+		<result column="t_content" property="t_content"/>
+		<result column="t_time" property="t_time"/>
+		<result column="t_img" property="t_img"/>
+		<association property="user" javaType="club.xianmusic.music.domain.User">
+			<result column="u_name" property="u_name"/>
+		</association>
+	
+	</resultMap>
+	
+	<select id="findBackTextById" resultMap="findBackTextById">
+		SELECT t_id,t_bref,t_content,t_title,t_time,t_img,u_name FROM usertext , `user` WHERE t_author_id = u_id and t_id = #{id}
+	</select>
+	
+	
+	<insert id="saveUserTextToText">
+		INSERT INTO text SELECT * FROM usertext WHERE t_id = #{id}
+	</insert>
+	
+	<delete id="deleteUserTextById">
+		delete from usertext where t_id = #{id}
+	</delete>
+	
+</mapper>

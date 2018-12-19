@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.xianmusic.music.mapper.UserMapper">
+
+
+	<select id="findUserByNameAndPass" resultType="club.xianmusic.music.domain.User">
+		select * from user where u_name = #{u_name} and u_password = #{u_password}
+	</select>
+	
+	
+	<select id="findUserIs" resultType="club.xianmusic.music.domain.User">
+		select * from user where u_name = #{u_name}
+	</select>
+	
+	<insert id="saveUser" useGeneratedKeys="true" keyProperty="u_id" >INSERT INTO user(`u_name`, `u_password`, `u_email`) VALUES (#{u_name}, #{u_password}, #{u_email})</insert>
+	
+	
+	<select id="findUserById" resultType="club.xianmusic.music.domain.User">
+		select * from user where u_id = #{id}
+	</select>
+</mapper>

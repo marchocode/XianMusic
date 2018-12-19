@@ -1,0 +1,47 @@
+/*
+* @Author: Marte
+* @Date:   2018-06-25 22:05:04
+* @Last Modified by:   Marte
+* @Last Modified time: 2018-06-28 09:40:17
+*/
+.nav_top {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.top_img {
+    background-color: red;
+}
+.h2_bgc {
+    background-color: #666;
+}
+.dao_img {
+    background:url("../img/BG.jpg") no-repeat;
+    background-size: cover;
+}
+.login_top {
+    padding-top:20px;
+
+}
+.study_min {
+    padding-top:20px;
+}
+.ding {
+    position: fixed;
+    z-index: 10;
+}
+.center_bk {
+    text-align: center;
+}
+.center_bk p {
+    margin-bottom: 0;
+}
+.center_bk ul {
+    margin-top: 20px;
+}
+.bottom_nvp {
+    padding-top:40px;
+    padding-bottom: 40px
+}
+.one_nav {
+	padding-top: 60px;
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>弦乐吉他网后台管理系统</title>
+
+<!-- Bootstrap -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../css/admin_css.css" />
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<link rel="shortcut icon" href="../img/xian.ico" />
+
+<link rel="bookmark" href="../img/xian.ico" />
+</head>
+
+<body>
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-md-12">
+				<h1>弦乐吉他网后台管理系统</h1>
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2" style="padding-top: 23px;">
+				<div style="width: 100%;" class="btn-group-vertical" role="group"
+					aria-label="Vertical button group">
+
+					<div class="btn-group" role="group">
+						<button style="height: 70px;" id="btnGroupVerticalDrop1"
+							type="button" class="btn btn-primary btn-lg btn-block"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							主页面轮播图管理 <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
+							<li><a href="banner_Admin.html">图片管理</a></li>
+							<li><a href="banner_Upload.html">上传图片</a></li>
+						</ul>
+					</div>
+					<div class="btn-group" role="group">
+						<button style="height: 70px;" id="btnGroupVerticalDrop1"
+							type="button" class="btn btn-default btn-lg btn-block"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							曲谱管理 <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
+							<li><a href="AdminPu.html">曲谱管理</a></li>
+							<li><a href="UploadPu.html">新增曲谱</a></li>
+						</ul>
+					</div>
+
+					<div class="btn-group" role="group">
+						<button style="height: 70px;" id="btnGroupVerticalDrop2"
+							type="button" class="btn btn-default dropdown-toggle"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							文章管理 <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
+							<li><a href="ExamineText.html">文章审核</a></li>
+							<li><a href="AdminText.html">文章管理</a></li>
+
+						</ul>
+					</div>
+					<div class="btn-group" role="group">
+						<button style="height: 70px;" id="btnGroupVerticalDrop3"
+							type="button" class="btn btn-default dropdown-toggle"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							用户管理 <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop3">
+							<li><a href="#">新增管理员</a></li>
+							<li><a href="#">修改管理员密码</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="page-header">
+					<h1>文章审核</h1>
+				</div>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>名称</th>
+							<th>简介</th>
+							<th>作者</th>
+							<th>点赞量</th>
+							<th>更新时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody id='tab'>
+						
+					</tbody>
+				</table>
+				<nav>
+					<ul class="pager">
+						<li id="before"><a href="javascript:;"><span aria-hidden="true">&larr;</span>
+								上一页</a></li>
+						<li><span id="inde"></span></li>
+						<li id="next"><a href="javascript:;">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<script src="../js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			
+			var index = 1;
+			
+			load(index);
+			
+			function load(index){
+				
+				$("#inde").text(index);
+				
+				$.ajax({
+
+					type : "GET",
+
+					url : "findAllExamine",
+
+					async : false,
+					
+					data : {
+						index : index					
+					},
+
+					error : function(request) {
+
+						alert("发送请求失败！");
+
+					},
+
+					success : function(data) {
+						
+						if (data.length == 0) {
+							$("#tab").append("<h4>暂无审核文章！</h4>");
+							return ;
+						}
+						for (var i = 0; i < data.length; i++) {
+							
+							var html = "<tr>"+
+								"<td>"+data[i].t_id+"</td>"+
+								"<td>"+data[i].t_title+"</td>"+
+								"<td>"+data[i].t_bref+"</td>"+
+								"<td>"+data[i].user.u_name+"</td>"+
+								"<td>"+data[i].t_drop+"</td>"+
+								"<td>"+data[i].t_time+"</td>"+
+								"<td><a href='deletePu/"+data[i].t_id+"' onclick='del(this)' style='padding-right: 20px;'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a> <a href='ExamineUpdate.html?id="+data[i].t_id+"'> <span class='glyphicon glyphicon-wrench' aria-hidden='true'></span></a></td>"+
+							"</tr>";
+							
+							$("#tab").append(html);
+						}
+
+					}
+
+				});
+
+			}
+			
+		
+		function del(e) {
+
+			var bear = confirm("再次确认是否删除");
+
+			if (!bear) {
+				//若点击取消；
+				e.href = "";
+				location.reload();
+			}
+
+		}
+		
+		$("#next").click(function() {
+			$("#tab").empty();
+			load(++index);
+
+		});
+		$("#before").click(function() {
+			
+			if (index !=1) {
+				$("#tab").empty();
+				load(--index);
+			}
+
+		});
+		
+});
+	</script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="../js/bootstrap.min.js"></script>
+</body>
+
+</html>

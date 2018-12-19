@@ -1,0 +1,21 @@
+/*
+* @Author: Marte
+* @Date:   2018-06-28 10:55:00
+* @Last Modified by:   Marte
+* @Last Modified time: 2018-06-28 11:06:54
+*/
+
+.text h1 {
+    padding-bottom: 20px;
+}
+.text p{
+    font-size: 16px;
+    line-height: 25px;
+}
+.ping {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.tou_img {
+	width: 64px;
+}

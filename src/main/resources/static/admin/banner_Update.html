@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>弦乐吉他网后台管理系统</title>
+
+<!-- Bootstrap -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../css/admin_css.css" />
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<link rel="shortcut icon" href="../img/xian.ico" />
+
+<link rel="bookmark" href="../img/xian.ico" />
+</head>
+
+<body>
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-md-12">
+				<h1>弦乐吉他网后台管理系统</h1>
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2" style="padding-top: 23px;">
+				<div style="width: 100%;" class="btn-group-vertical" role="group"
+					aria-label="Vertical button group">
+
+					<div class="btn-group" role="group">
+						<button style="height: 70px;" id="btnGroupVerticalDrop1"
+							type="button" class="btn btn-primary btn-lg btn-block"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							主页面轮播图管理 <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
+							<li><a href="banner_Admin.html">图片管理</a></li>
+							<li><a href="banner_Upload.html">上传图片</a></li>
+						</ul>
+					</div>
+					<div class="btn-group" role="group">
+						<button style="height: 70px;" id="btnGroupVerticalDrop1"
+							type="button" class="btn btn-default btn-lg btn-block"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							曲谱管理 <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
+							<li><a href="AdminPu.html">曲谱管理</a></li>
+							<li><a href="UploadPu.html">新增曲谱</a></li>
+						</ul>
+					</div>
+
+					<div class="btn-group" role="group">
+						<button style="height: 70px;" id="btnGroupVerticalDrop2"
+							type="button" class="btn btn-default dropdown-toggle"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							文章管理 <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
+							<li><a href="ExamineText.html">文章审核</a></li>
+							<li><a href="AdminText.html">文章管理</a></li>
+
+						</ul>
+					</div>
+					<div class="btn-group" role="group">
+						<button style="height: 70px;" id="btnGroupVerticalDrop3"
+							type="button" class="btn btn-default dropdown-toggle"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							用户管理 <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop3">
+							<li><a href="#">新增管理员</a></li>
+							<li><a href="#">修改管理员密码</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="page-header">
+					<h1>Banner 数据更新</h1>
+				</div>
+
+				<form class="form-horizontal" action="updateBanner" method="post">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-1 control-label">ID:</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" name="b_id" id="bid">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-1 control-label">文件:</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="file" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-1 control-label">内容:</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" name="b_title" id="text">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label for="inputPassword3" class="col-sm-1 control-label">预览:</label>
+						<div class="col-sm-5">
+							<img alt="" id='img' src="" class='img-responsive'>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-1 col-sm-5">
+							<button type="submit"  class="btn btn-success btn-block">确认修改</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<script src="../js/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+
+			var id;
+
+			function getParamer(paramer) {
+
+				var url = window.location.href.split("?")[1]; /* 获取url里"?"后面的值 */
+				if (url.indexOf("&") > 0) { /* 判断是否是一个参数还是多个参数 */
+					urlParamArry = url.split("&"); /* 分开每个参数，并放到数组里 */
+					for (var i = 0; i < urlParamArry.length; i++) {
+						var paramerName = urlParamArry[i].split("="); /* 把每个参数名和值分开，并放到数组里 */
+						if (paramer == paramerName[0]) { /* 匹配输入的参数和数组循环出来的参数是否一样 */
+							return paramerName[1]; /* 返回想要的参数值 */
+						}
+					}
+				} else { /* 判断只有个参数 */
+					var paramerValue = url.split("=")[1];
+					return paramerValue;
+				}
+
+			}
+
+			id = getParamer(id);
+
+			$("#bid").val(id);
+
+			$
+					.ajax({
+
+						type : "GET",
+
+						url : "findBannerById",
+
+						data : {
+							id : id
+						},
+
+						async : false,
+
+						error : function(request) {
+
+							alert("发送请求失败！");
+
+						},
+
+						success : function(data) {
+
+							$("#file").val(data.b_imgaddress);
+							$("#text").val(data.b_title);
+							$("#img").attr("src",
+									"../img/banner/" + data.b_imgaddress);
+
+						}
+
+					});
+
+		})
+	</script>
+</body>
+
+</html>

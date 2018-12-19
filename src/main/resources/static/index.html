@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>弦乐吉他网</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="css/inde_css.css">
+<link rel="shortcut icon" href="xian.ico" />
+
+<link rel="bookmark" href="xian.ico" />
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<div class="row ">
+			<div class="col-md-12 nav_top">
+				<nav class="navbar navbar-default navbar-fixed-top">
+					<div class="container-fluid">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed"
+								data-toggle="collapse"
+								data-target="#bs-example-navbar-collapse-1"
+								aria-expanded="false">
+								<span class="sr-only">Toggle navigation</span> <span
+									class="icon-bar"></span> <span class="icon-bar"></span> <span
+									class="icon-bar"></span>
+							</button>
+							<img alt="" src="logo.png" width="120px">
+						</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse"
+							id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav">
+								<li class="active"><a href="index.html">首页 <span
+										class="sr-only">(current)</span>
+								</a></li>
+								<li><a href="html/ArticleKu.html?index=1">文章库</a></li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown" role="button" aria-haspopup="true"
+									aria-expanded="false">吉他谱 <span class="caret"></span>
+								</a>
+									<ul class="dropdown-menu">
+										<li><a href="html/quku.html?id=1001">每日一首</a></li>
+										<li><a href="html/PuKu.html">吉他曲库</a></li>
+									</ul></li>
+								<li><a href="html/Submission.html">美文投稿</a></li>
+							</ul>
+							<form class="navbar-form navbar-left" role="search">
+								<div class="form-group">
+									<input type="text" class="form-control" id="content"
+										placeholder="键入吉他谱名字">
+								</div>
+								<button type="button" id='find' class="btn btn-default">查找</button>
+							</form>
+
+							<ul class="nav navbar-nav navbar-right" id='show'>
+								<li><a href="html/login.html">登陆</a></li>
+								<li><a href="html/regine.html">注册</a></li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown" role="button" aria-haspopup="true"
+									aria-expanded="false">关于我们<span class="caret"></span>
+								</a>
+									<ul class="dropdown-menu">
+										<li><a href="html/message.html">给我留言</a></li>
+										<li><a href="html/aboutAuthor.html">关于我们</a></li>
+									</ul></li>
+							</ul>
+						</div>
+						<!-- /.navbar-collapse -->
+					</div>
+					<!-- /.container-fluid -->
+				</nav>
+			</div>
+
+		</div>
+		<div class="row one_nav">
+
+			<div class="col-md-8">
+				<div id="carousel-example-generic" class="carousel slide"
+					data-ride="carousel">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#carousel-example-generic" data-slide-to="0"
+							class="active"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					</ol>
+
+					<!-- Wrapper for slides -->
+					<!-- Banner 图 -->
+					<div class="carousel-inner" role="listbox" id='banner'></div>
+
+					<!-- Controls -->
+					<a class="left carousel-control" href="#carousel-example-generic"
+						role="button" data-slide="prev"><span
+						class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span> </a> <a
+						class="right carousel-control" href="#carousel-example-generic"
+						role="button" data-slide="next"> <span
+						class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-4 login_top">
+				<!-- 这里写网站的最新公告 -->
+				<div class="list-group">
+					<a href="" class="list-group-item list-group-item-danger ">网站公告：</a>
+					<a href="html/affiche.html" target="_blank"
+						class="list-group-item ">网站版本更新说明： <span class='pull-right'>2018-12-17</span>
+					</a> <a href="#" class="list-group-item ">V1.2版本将在月底发布<span
+						class='pull-right'>2018-12-17</span></a> <a href="#"
+						class="list-group-item ">网站新功能你来做决定！<span class='pull-right'>2018-12-17</span></a>
+					<a href="#" class="list-group-item ">写给各位吉他爱好者的一封信<span
+						class='pull-right'>2018-12-17</span></a> <a href="#"
+						class="list-group-item ">网站Banner图设计，下一个就是你<span
+						class='pull-right'>2018-12-17</span></a>
+				</div>
+			</div>
+		</div>
+		<div class="row study_min">
+
+			<div class="col-md-4 list-group" id='yue' style="padding-left: 15px">
+				<a href="" class="list-group-item list-group-item-success">本月最新</a>
+				<!-- 本月最新吉他谱  -->
+
+			</div>
+			<div class="col-md-4 list-group" id='dian' style="padding-left: 15px">
+				<a href="javascript" class="list-group-item list-group-item-info">点击量最高</a>
+
+			</div>
+			<div class="col-md-4 list-group" style="padding-left: 15px"
+				id='ttext'>
+				<a href="javascript" class="list-group-item list-group-item-warning">推荐文章</a>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<img alt="" src="img/广告.jpg" class='img-responsive'>
+			</div>
+		</div>
+		<div class="row">
+			<h3>
+				视频推荐 <span class="label label-danger">New</span>
+			</h3>
+		</div>
+		<div class="row study_min" id='text'>
+			<!-- 主要文章推荐 -->
+		</div>
+
+		<div class="row ">
+			<h3>
+				琴友直播 <span class="label label-danger">New</span>
+			</h3>
+		</div>
+
+		<div class="row study_min">
+			<!-- 直播模块 -->
+			<div class='col-md-3'>
+				<div class="list-group">
+					<a href="#" class="list-group-item list-group-item-success active">
+						直播房间 </a> <a href="#" class="list-group-item">01 直播教学《纸短情长》</a> <a
+						href="#" class="list-group-item">02 测试房</a> <a href="#"
+						class="list-group-item">03 测试房</a> <a href="#"
+						class="list-group-item">04 测试房</a>
+				</div>
+			</div>
+			<div class='col-md-6'>
+				<div id="id_video_container" style="width: 100%; height: auto;"></div>
+
+			</div>
+			<div class='col-md-3'>
+				<div class="list-group">
+					<a href="#" class="list-group-item active"> 本周最佳直播用户 </a> <a
+						href="#" class="list-group-item list-group-item-danger">MRC1999</a>
+					<a href="#" class="list-group-item list-group-item-warning">Test123</a>
+					<a href="#" class="list-group-item list-group-item-success">暂无</a>
+					<a href="#" class="list-group-item">暂无</a>
+				</div>
+
+			</div>
+		</div>
+		<div class="row">
+
+			<div class="input-group col-md-4 "
+				style="margin: 0 auto; width: 480px">
+				<input type="text" class="form-control" placeholder="发送一条友善的弹幕吧！"
+					id='SendContent'> <span class="input-group-btn">
+					<button class="btn btn-default" type="button" onclick="sendText()">Go!</button>
+				</span>
+			</div>
+
+		</div>
+		<!--开始写底部导航-->
+	</div>
+
+	<div class="bottom_nvp">
+		<hr>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 center_bk">
+					<p>String guitar network, as a free guitar spectrum for
+						learning and communication, not as a commercial use, its content
+						is from the Internet,</p>
+					<p>if there is damage to your copyright, please send mail to
+						the author mailbox, immediate rectification</p>
+					<p>弦乐吉他网，为众多吉他爱好者提供免费的曲谱推荐</p>
+					<ul class="list-inline">
+						<li>陕ICP备18015646号</li>
+						<li><a href="index.html">首页</a></li>
+						<li><a href="html/PuKu.html?index=1">吉他谱库</a></li>
+						<li><a href="html/ArticleKu.html?index=1">美文推荐</a></li>
+						<li><a href="html/aboutAuthor.html ">关于我们</a></li>
+						<li><a href="html/message.html ">联系作者</a></li>
+						<li><a href="html/message.html">给我留言</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">查找结果</h4>
+				</div>
+				<div class="modal-body" id="findout">
+					<!-- 内容 -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src='js/index_js.js'></script>
+
+	<!-- 腾讯云Js -->
+	<script
+		src="//qzonestyle.gtimg.cn/open/qcloud/video/live/h5/live_connect.js"
+		charset="utf-8"></script>
+	<script type="text/javascript">
+		var player;
+		var id = randomNum(1000, 9999);
+		var websocket = null;
+		
+		//判断当前浏览器是否支持WebSocket
+		if ('WebSocket' in window) {
+			websocket = new WebSocket("ws://94.191.66.230/music/newwebsocket/" + id);
+		} else {
+			alert('当前浏览器不支持弹幕发送')
+		}
+
+		var option = {
+			"live_url" : "http://www.xianmusic.club/live/b35185bcce.flv",
+			"live_url2" : "http://www.xianmusic.club/live/b35185bcce.m3u8",
+			"width" : 480,
+			"height" : 320
+		};
+
+		player = new qcVideo.Player("id_video_container", option);
+
+		var barrage = [ {
+			"type" : "content",
+			"content" : "hello world",
+			"time" : "1",
+			"postion" : "center",
+			"style" : "C64B03;35"
+		}
+
+		];
+
+		/* 发送消息 */
+		function sendText() {
+			var text = document.getElementById('SendContent').value;
+			if (text != "" && websocket != null) {
+				websocket.send(text);
+			}
+		}
+		/* web端接收到消息 */
+		websocket.onmessage = function(event) {
+			barrage[0].content = event.data;
+			player.addBarrage(barrage);
+		}
+		//监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+		window.onbeforeunload = function() {
+			closeWebSocket();
+		}
+		//关闭WebSocket连接
+		function closeWebSocket() {
+			websocket.close();
+		}
+		websocket.onerror = function() {
+			alert("连接发生错误");
+		};
+
+		function randomNum(minNum, maxNum) {
+			switch (arguments.length) {
+			case 1:
+				return parseInt(Math.random() * minNum + 1, 10);
+				break;
+			case 2:
+				return parseInt(Math.random() * (maxNum - minNum + 1) + minNum,
+						10);
+				break;
+			default:
+				return 0;
+				break;
+			}
+		}
+	</script>
+</body>
+
+</html>
